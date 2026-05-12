@@ -64,38 +64,38 @@ export default function IntakeForm() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 24px", position: "relative" }}>
-      <div style={{ width: "100%", maxWidth: 640 }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 40 }} className="animate-fade-in-up">
+    <div style={{ height: "100vh", width: "100vw", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 20px" }}>
+      <div style={{ width: "100%", maxWidth: 640, display: "flex", flexDirection: "column", maxHeight: "100%" }}>
+        {/* Compact Header */}
+        <div style={{ textAlign: "center", marginBottom: 16, flexShrink: 0 }}>
           <div style={{ 
             display: "inline-flex", alignItems: "center", justifyContent: "center", 
-            width: 64, height: 64, borderRadius: "50%", 
+            width: 44, height: 44, borderRadius: "50%", 
             background: "linear-gradient(135deg, var(--color-primary), var(--color-cta))", 
-            marginBottom: 20, boxShadow: "0 8px 30px rgba(79, 70, 229, 0.4)",
-            border: "2px solid rgba(255,255,255,0.3)"
+            marginBottom: 8, boxShadow: "0 4px 15px rgba(79, 70, 229, 0.3)",
+            border: "2px solid rgba(255,255,255,0.4)"
           }}>
-            <IconShield size={32} style={{ color: "white" }} />
+            <IconShield size={22} style={{ color: "white" }} />
           </div>
-          <h1 style={{ fontFamily: "var(--font-heading)", fontSize: 28, fontWeight: 800, color: "var(--color-text)", marginBottom: 12, letterSpacing: "-0.02em" }}>
+          <h1 style={{ fontFamily: "var(--font-heading)", fontSize: 22, fontWeight: 800, color: "var(--color-text)", margin: "0 0 4px", letterSpacing: "-0.01em" }}>
             Hệ thống Đánh giá Hiệu suất Nhân sự
           </h1>
-          <p style={{ fontFamily: "var(--font-body)", fontSize: 15, color: "var(--color-text-secondary)", lineHeight: 1.6, maxWidth: 480, margin: "0 auto" }}>
-            Vui lòng cung cấp thông tin cá nhân để hệ thống khởi tạo hồ sơ và tải các mô hình đánh giá AI phù hợp.
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "var(--color-text-secondary)", margin: 0 }}>
+            Cung cấp thông tin cơ bản để khởi tạo hồ sơ và tải mô hình phân tích AI.
           </p>
         </div>
 
-        {/* Form card */}
-        <form onSubmit={handleSubmit} className="glass-card animate-fade-in-up" style={{ padding: "40px", animationDelay: "100ms" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32, paddingBottom: 20, borderBottom: "1px solid rgba(255,255,255,0.2)" }}>
-            <div style={{ padding: 8, borderRadius: "50%", background: "rgba(79, 70, 229, 0.15)" }}>
-              <IconUser size={20} style={{ color: "var(--color-primary)" }} />
+        {/* Highly Condensed Form Card */}
+        <form onSubmit={handleSubmit} className="glass-card" style={{ padding: "20px 28px", display: "flex", flexDirection: "column", gap: 12, overflowY: "auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, paddingBottom: 8, borderBottom: "1px solid rgba(255,255,255,0.2)" }}>
+            <div style={{ padding: 6, borderRadius: "50%", background: "rgba(79, 70, 229, 0.12)" }}>
+              <IconUser size={16} style={{ color: "var(--color-primary)" }} />
             </div>
-            <span style={{ fontFamily: "var(--font-heading)", fontSize: 18, fontWeight: 700, color: "var(--color-text)" }}>Thông tin cơ bản</span>
+            <span style={{ fontFamily: "var(--font-heading)", fontSize: 15, fontWeight: 700, color: "var(--color-text)" }}>Thông tin hồ sơ</span>
           </div>
 
           {/* Name row */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 24 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <FieldGroup label="Họ" error={errors.last_name}>
               <input type="text" placeholder="Nhập họ..." value={form.last_name} onChange={(e) => updateField("last_name", e.target.value)}
                 style={inputStyle(errors.last_name)} />
@@ -107,7 +107,7 @@ export default function IntakeForm() {
           </div>
 
           {/* Department & City */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 24 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <FieldGroup label="Phòng ban" error={errors.department}>
               <select value={form.department} onChange={(e) => updateField("department", e.target.value)} style={inputStyle(errors.department)}>
                 <option value="">Chọn phòng ban</option>
@@ -123,7 +123,7 @@ export default function IntakeForm() {
           </div>
 
           {/* Education & Recruitment */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <FieldGroup label="Trình độ học vấn" error={errors.education_level}>
               <select value={form.education_level} onChange={(e) => updateField("education_level", e.target.value)} style={inputStyle(errors.education_level)}>
                 <option value="">Chọn trình độ</option>
@@ -138,52 +138,46 @@ export default function IntakeForm() {
             </FieldGroup>
           </div>
 
-          <div style={{ height: 1, background: "rgba(255,255,255,0.2)", margin: "0 -40px 32px -40px" }} />
+          <div style={{ height: 1, background: "rgba(255,255,255,0.15)", margin: "2px -28px" }} />
 
-          {/* Age slider */}
-          <div style={{ marginBottom: 32 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
-              <label style={labelStyle}>Độ tuổi</label>
-              <span style={{ fontFamily: "var(--font-heading)", fontSize: 16, fontWeight: 700, color: "var(--color-primary)" }}>{form.age} tuổi</span>
+          {/* Side-by-side Sliders row to save vertical space */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, paddingTop: 2 }}>
+            {/* Age slider */}
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
+                <label style={labelStyle}>Độ tuổi</label>
+                <span style={{ fontFamily: "var(--font-heading)", fontSize: 12, fontWeight: 700, color: "var(--color-primary)" }}>{form.age} tuổi</span>
+              </div>
+              <input type="range" min={20} max={60} value={form.age} onChange={(e) => updateField("age", +e.target.value)} style={{ width: "100%", cursor: "pointer", accentColor: "var(--color-primary)" }} />
             </div>
-            <input type="range" min={20} max={60} value={form.age} onChange={(e) => updateField("age", +e.target.value)} style={{ width: "100%", cursor: "pointer", accentColor: "var(--color-primary)" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--color-text-tertiary)", marginTop: 8 }}>
-              <span>20</span><span>60</span>
-            </div>
-          </div>
 
-          {/* Training courses slider */}
-          <div style={{ marginBottom: 40 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
-              <label style={labelStyle}>Số lượng khóa đào tạo đã hoàn thành</label>
-              <span style={{ fontFamily: "var(--font-heading)", fontSize: 16, fontWeight: 700, color: "var(--color-primary)" }}>{form.training_courses} khóa</span>
-            </div>
-            <input type="range" min={0} max={10} value={form.training_courses} onChange={(e) => updateField("training_courses", +e.target.value)} style={{ width: "100%", cursor: "pointer", accentColor: "var(--color-primary)" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--color-text-tertiary)", marginTop: 8 }}>
-              <span>0</span><span>10</span>
+            {/* Training courses slider */}
+            <div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
+                <label style={labelStyle}>Khóa đào tạo</label>
+                <span style={{ fontFamily: "var(--font-heading)", fontSize: 12, fontWeight: 700, color: "var(--color-primary)" }}>{form.training_courses} khóa</span>
+              </div>
+              <input type="range" min={0} max={10} value={form.training_courses} onChange={(e) => updateField("training_courses", +e.target.value)} style={{ width: "100%", cursor: "pointer", accentColor: "var(--color-primary)" }} />
             </div>
           </div>
 
           {/* Submit */}
           <button type="submit" style={{
-            width: "100%", padding: "16px 24px",
+            width: "100%", padding: "10px 20px", marginTop: 4,
             background: "linear-gradient(135deg, var(--color-primary), var(--color-cta))", color: "white",
             border: "none", borderRadius: "var(--radius-full)",
-            fontFamily: "var(--font-heading)", fontSize: 16, fontWeight: 700,
-            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-            transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-            boxShadow: "0 8px 20px rgba(79, 70, 229, 0.3)"
-          }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 12px 24px rgba(79, 70, 229, 0.4)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 8px 20px rgba(79, 70, 229, 0.3)"; }}
-          >
-            Bắt đầu đánh giá hồ sơ
-            <IconChevronRight size={20} />
+            fontFamily: "var(--font-heading)", fontSize: 14, fontWeight: 700,
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+            transition: "all 200ms ease",
+            boxShadow: "0 4px 12px rgba(79, 70, 229, 0.25)"
+          }}>
+            Bắt đầu phân tích AI
+            <IconChevronRight size={16} />
           </button>
 
-          <p style={{ fontSize: 12, color: "var(--color-text-tertiary)", textAlign: "center", marginTop: 20, lineHeight: 1.5 }}>
-            <IconShield size={12} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />
-            Thông tin được xử lý bảo mật theo chính sách nội bộ. Dữ liệu chỉ dùng cho mục đích đánh giá.
+          <p style={{ fontSize: 11, color: "var(--color-text-tertiary)", textAlign: "center", margin: 0 }}>
+            <IconShield size={11} style={{ display: "inline", marginRight: 4, verticalAlign: "middle" }} />
+            Dữ liệu được mã hóa bảo mật tuyệt đối cho mục đích đánh giá nội bộ.
           </p>
         </form>
       </div>
@@ -193,33 +187,31 @@ export default function IntakeForm() {
 
 function FieldGroup({ label, error, children }) {
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <label style={labelStyle}>{label}</label>
       {children}
-      {error && <span style={{ fontSize: 12, color: "var(--color-danger)", marginTop: 4, display: "block" }}>{error}</span>}
+      {error && <span style={{ fontSize: 11, color: "var(--color-danger)", marginTop: 2 }}>{error}</span>}
     </div>
   );
 }
 
 const labelStyle = {
-  display: "block",
   fontFamily: "var(--font-body)",
-  fontSize: 13,
-  fontWeight: 500,
+  fontSize: 12,
+  fontWeight: 600,
   color: "var(--color-text)",
-  marginBottom: 6,
+  marginBottom: 4,
 };
 
 const inputStyle = (hasError) => ({
   width: "100%",
-  padding: "10px 14px",
+  padding: "7px 12px",
   border: `1px solid ${hasError ? "var(--color-danger)" : "var(--color-border)"}`,
   borderRadius: "var(--radius-sm)",
-  fontSize: 14,
+  fontSize: 13,
   fontFamily: "var(--font-body)",
   color: "var(--color-text)",
   background: "var(--color-surface)",
-  transition: "border-color 200ms ease, box-shadow 200ms ease",
   outline: "none",
   cursor: "pointer",
 });
